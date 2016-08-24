@@ -18,7 +18,6 @@ package net.fabricmc.event.player.mixin;
 
 import net.fabricmc.base.Fabric;
 import net.fabricmc.event.player.PlayerTrySleepEvent;
-import net.fabricmc.event.player.TestMod;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
