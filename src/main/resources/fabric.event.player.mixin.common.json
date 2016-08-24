@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "net.fabricmc.event.player.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"MixinEntityPlayer"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
