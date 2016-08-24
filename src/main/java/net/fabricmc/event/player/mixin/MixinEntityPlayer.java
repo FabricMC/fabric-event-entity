@@ -37,7 +37,7 @@ public abstract class MixinEntityPlayer extends EntityLiving {
 
 	@Inject(method = "trySleep(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/entity/player/EntityPlayer$SleepResult;", at = @At("HEAD"), cancellable = true)
 	public void onTrySleep(BlockPos pos, CallbackInfoReturnable<EntityPlayer.SleepResult> ci) {
-		PlayerTrySleepEvent event = new PlayerTrySleepEvent();
+		PlayerTrySleepEvent event = new PlayerTrySleepEvent((EntityPlayer)(Object)this, pos);
 		Fabric.getEventBus().publish(event);
 		EntityPlayer.SleepResult result = event.getResult();
 		if (result != null) {

@@ -16,36 +16,19 @@
 
 package net.fabricmc.event.player;
 
+import net.fabricmc.api.Event;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
 
-public class PlayerTrySleepEvent extends PlayerEvent {
+public class PlayerEvent extends Event {
 
-	/**
-	 * The result of the sleep check. Leave {@code null} for Vanilla behavior.
-	 */
-	private EntityPlayer.SleepResult result;
+	protected final EntityPlayer player;
 
-	/**
-	 * The position the player is attempting to sleep at
-	 */
-	private final BlockPos pos;
-
-	public PlayerTrySleepEvent(EntityPlayer player, BlockPos pos) {
-		super(player);
-		this.pos = pos;
+	public PlayerEvent(EntityPlayer player) {
+		this.player = player;
 	}
 
-	public EntityPlayer.SleepResult getResult() {
-		return result;
-	}
-
-	public void setResult(EntityPlayer.SleepResult result) {
-		this.result = result;
-	}
-
-	public BlockPos getPos() {
-		return pos;
+	public EntityPlayer getPlayer() {
+		return player;
 	}
 
 }
