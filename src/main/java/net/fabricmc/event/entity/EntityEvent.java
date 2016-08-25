@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package net.fabricmc.event.player;
+package net.fabricmc.event.entity;
 
 import net.fabricmc.api.Event;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.Entity;
 
-public class PlayerEvent extends Event {
+public class EntityEvent extends Event {
 
-	protected final EntityPlayer player;
+	private final Entity entity;
 
-	public PlayerEvent(EntityPlayer player) {
-		this.player = player;
+	public EntityEvent(Entity entity) {
+		this.entity = entity;
 	}
 
-	public EntityPlayer getPlayer() {
-		return player;
+	public Entity getEntity() {
+		return entity;
 	}
 
 }

@@ -14,21 +14,29 @@
  * limitations under the License.
  */
 
-package net.fabricmc.event.player.mixin;
+package net.fabricmc.event.entity.mixin;
 
 import net.fabricmc.base.Fabric;
-import net.fabricmc.event.player.PlayerTrySleepEvent;
+import net.fabricmc.event.entity.PlayerArmorTickEvent;
+import net.fabricmc.event.entity.PlayerTrySleepEvent;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = EntityPlayer.class, remap = false)
 public abstract class MixinEntityPlayer extends EntityLiving {
+
+	@Shadow private InventoryPlayer inventory;
 
 	public MixinEntityPlayer(World a1) {
 		super(a1);
@@ -41,6 +49,19 @@ public abstract class MixinEntityPlayer extends EntityLiving {
 		EntityPlayer.SleepResult result = event.getResult();
 		if (result != null) {
 			ci.setReturnValue(result);
+		}
+	}
+
+	@Inject(method = "update()V", at = @At("HEAD"))
+	public void onUpdate(CallbackInfo ci) {
+		for (EquipmentSlot slot : EquipmentSlot.values()) {
+			if (slot.getType() == EquipmentSlot.Type.ARMOR) {
+				ItemStack stack = inventory.getArmorStack(slot.h);
+				if (stack != ItemStack.NULL_STACK) {
+					PlayerArmorTickEvent event = new PlayerArmorTickEvent((EntityPlayer)(Object)this, stack, slot);
+					Fabric.getEventBus().publish(event);
+				}
+			}
 		}
 	}
 

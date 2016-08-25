@@ -14,38 +14,29 @@
  * limitations under the License.
  */
 
-package net.fabricmc.event.player;
+package net.fabricmc.event.entity;
 
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.item.ItemStack;
 
-public class PlayerTrySleepEvent extends PlayerEvent {
+public class PlayerArmorTickEvent extends PlayerEvent {
 
-	/**
-	 * The result of the sleep check. Leave {@code null} for Vanilla behavior.
-	 */
-	private EntityPlayer.SleepResult result;
+	private final ItemStack stack;
+	private final EquipmentSlot slot;
 
-	/**
-	 * The position the player is attempting to sleep at
-	 */
-	private final BlockPos pos;
-
-	public PlayerTrySleepEvent(EntityPlayer player, BlockPos pos) {
+	public PlayerArmorTickEvent(EntityPlayer player, ItemStack stack, EquipmentSlot slot) {
 		super(player);
-		this.pos = pos;
+		this.stack = stack;
+		this.slot = slot;
 	}
 
-	public EntityPlayer.SleepResult getResult() {
-		return result;
+	public ItemStack getStack() {
+		return stack;
 	}
 
-	public void setResult(EntityPlayer.SleepResult result) {
-		this.result = result;
-	}
-
-	public BlockPos getPos() {
-		return pos;
+	public EquipmentSlot getSlot() {
+		return slot;
 	}
 
 }

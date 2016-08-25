@@ -1,8 +1,8 @@
 {
 	"group": "net.fabricmc",
-	"id": "fabric-event-player",
-	"version": "0.1.0",
+	"id": "fabric-event-entity",
+	"version": "0.2.0",
 	"mixins": {
-		"common": "fabric.event.player.mixin.common.json"
+		"common": "fabric.event.entity.mixin.common.json"
 	}
 }

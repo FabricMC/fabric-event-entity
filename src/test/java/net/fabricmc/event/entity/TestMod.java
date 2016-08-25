@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.fabricmc.event.player;
+package net.fabricmc.event.entity;
 
 import net.fabricmc.api.Hook;
 import net.fabricmc.base.Fabric;
@@ -32,6 +32,11 @@ public class TestMod {
 	@Hook(name = "test:onTrySleep", before = {}, after = {})
 	public void onTrySleep(PlayerTrySleepEvent event) {
 		event.setResult(EntityPlayer.SleepResult.NOT_SAFE);
+	}
+
+	@Hook(name = "test:onArmorTick", before = {}, after = {})
+	public void onArmorTick(PlayerArmorTickEvent event) {
+		System.out.println("Armor being ticked: " + event.getStack());
 	}
 
 }
