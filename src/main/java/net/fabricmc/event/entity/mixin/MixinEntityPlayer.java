@@ -56,7 +56,7 @@ public abstract class MixinEntityPlayer extends EntityLiving {
 	public void onUpdate(CallbackInfo ci) {
 		for (EquipmentSlot slot : EquipmentSlot.values()) {
 			if (slot.getType() == EquipmentSlot.Type.ARMOR) {
-				ItemStack stack = inventory.getArmorStack(slot.h);
+				ItemStack stack = inventory.getArmorStack(slot.entityId);
 				if (stack != ItemStack.NULL_STACK) {
 					PlayerArmorTickEvent event = new PlayerArmorTickEvent((EntityPlayer)(Object)this, stack, slot);
 					Fabric.getEventBus().publish(event);
