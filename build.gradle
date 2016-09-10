@@ -1,14 +1,14 @@
 buildscript {
-	repositories {
-		jcenter()
-		maven {
-			name = "Fabric"
-			url = "http://maven.fabricmc.net/"
-		}
-	}
-	dependencies {
-		classpath "net.fabricmc:fabric-loom:0.0.1-SNAPSHOT"
-	}
+    repositories {
+        jcenter()
+        maven {
+        	name = "Fabric"
+        	url = "http://maven.fabricmc.net/"
+        }
+    }
+    dependencies {
+        classpath "net.fabricmc:fabric-loom:0.0.1-SNAPSHOT"
+    }
 }
 
 plugins {
@@ -16,6 +16,8 @@ plugins {
 }
 
 apply plugin: "net.fabricmc.loom"
+
+archivesBaseName = modid
 
 apply from: 'https://github.com/FabricMC/fabric-docs/raw/master/gradle/maven.gradle'
 apply from: 'https://github.com/FabricMC/fabric-docs/raw/master/gradle/license.gradle'
